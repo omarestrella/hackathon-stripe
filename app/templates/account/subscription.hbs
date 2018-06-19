@@ -1,0 +1,16 @@
+<h3 class="title">
+  {{#link-to "account.detail" model.customer.id}}
+    &laquo; Back
+  {{/link-to}}
+  {{await model.name}}
+</h3>
+
+{{#profile/info-container as |container|}}
+  {{#container.heading}}
+    Details
+  {{/container.heading}}
+
+  {{#container.content}}
+    {{profile/edit-subscription-entry customer=(await model.customer) subscription=model}}
+  {{/container.content}}
+{{/profile/info-container}}

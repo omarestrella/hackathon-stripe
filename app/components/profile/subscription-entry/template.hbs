@@ -1,0 +1,17 @@
+<div class="datum product-name">
+  {{await name}}
+</div>
+
+<div class="datum subscription-pricing">
+  {{await pricing}}
+</div>
+
+<div class="datum edit-subscription">
+  {{#link-to "account.subscription" subscription.id}}
+    Edit
+  {{/link-to}}
+
+  <a href="#" class="danger" {{action "showDeleteConfirmation"}}>
+    Cancel
+  </a>
+</div>

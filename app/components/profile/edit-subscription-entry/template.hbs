@@ -1,0 +1,31 @@
+<div class="datum">
+  Current Card
+</div>
+
+<div class="datum credit-card">
+  <span class="mask">
+    ••••
+  </span>
+  <span class="last-four">
+    {{currentCard.last4}}
+  </span>
+</div>
+
+<div class="datum">
+  Change Card
+</div>
+
+<div class="datum">
+  <select onchange={{action "changeDefaultCard" on="change"}}>
+    {{#each customer.cards as |card|}}
+      <option value={{card.id}}>
+        <span class="mask">
+          ••••
+        </span>
+        <span class="last-four">
+          {{card.last4}}
+        </span>
+      </option>
+    {{/each}}
+  </select>
+</div>
