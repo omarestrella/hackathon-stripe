@@ -7,5 +7,13 @@ export default RESTSerializer.extend({
     }
 
     return this._super(store, modelClass, data, id, requestType);
+  },
+
+  normalizeFindAllResponse(store, modelClass, payload, id, requestType) {
+    const data = {
+      [modelClass.modelName]: payload.data
+    }
+
+    return this._super(store, modelClass, data, id, requestType);
   }
 });

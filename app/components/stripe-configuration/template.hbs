@@ -1,0 +1,8 @@
+<form class="stripe-sign-in" {{action "saveToken" on="submit"}}>
+  <label for="stripe-token">
+    Enter Restricted Token
+  </label>
+  <input id="stripe-token"
+    onchange={{action (mut _newToken) value="target.value"}}>
+  <button {{action "saveToken"}}>Save</button>
+</form>

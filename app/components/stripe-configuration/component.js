@@ -7,13 +7,16 @@ export default Component.extend({
 
   stripe: inject(),
 
-  newToken: null,
+  submit: () => {},
+
+  _newToken: null,
 
   actions: {
     saveToken() {
-      const token = this.get('newToken');
+      const token = this.get('_newToken');
       if (token) {
         this.get('stripe').saveToken(token);
+        this.get('submit')();
       }
     }
   },

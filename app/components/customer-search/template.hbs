@@ -1,0 +1,20 @@
+<input
+  class=""
+  placeholder="Search for customer..."
+  oninput={{action "search" on="input"}}
+  onclick={{action "showResults" on="click"}}>
+
+{{#if (await showResults)}}
+  <div class="search-results dropdown-container">
+    {{#each (await searchResults) as |customer|}}
+      {{#link-to "account.detail" customer.id class="result" invokeAction=(action "closeResults")}}
+        <div class="description">
+          {{customer.description}}
+        </div>
+        <div class="email">
+          {{customer.email}}
+        </div>
+      {{/link-to}}
+    {{/each}}
+  </div>
+{{/if}}
