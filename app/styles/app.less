@@ -1,4 +1,4 @@
-@import 'pod-styles';
+@import 'pod-styles.less';
 @import 'variables';
 
 html, body, .application-container {
@@ -13,7 +13,7 @@ body {
   letter-spacing: 1px;
   background-color: #f5f7f9;
 
-  & > div {
+  & > div.ember-view {
     height: 100%;
   }
 
@@ -27,4 +27,6 @@ body, div, input {
 }
 
 @import 'global';
+@import 'modal';
 @import 'account';
+@import 'subscription';

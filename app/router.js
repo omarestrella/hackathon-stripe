@@ -8,7 +8,11 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('account', function () {
-    this.route('detail', { path: ':id' });
+    this.route('detail', { path: ':id' }, function () {
+
+    });
+
+    this.route('subscription', { path: 'subscription/:subscription_id' })
   })
 });
 

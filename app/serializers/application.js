@@ -1,8 +1,12 @@
 import RESTSerializer from 'ember-data/serializers/rest';
 
 function normalizeData(data) {
-  data.subscriptions = data.subscriptions.data;
-  data.sources = data.sources.data;
+  if (data.subscriptions) {
+    data.subscriptions = data.subscriptions.data;
+  }
+  if (data.sources) {
+    data.sources = data.sources.data;
+  }
   return data;
 }
 
@@ -21,5 +25,9 @@ export default RESTSerializer.extend({
     };
 
     return this._super(store, modelClass, data, id, requestType);
-  }
+  },
+
+  serializeIntoHash(hash, typeClass, snapshot, options) {
+    Object.assign(hash, this.serialize(snapshot, options));
+  },
 });

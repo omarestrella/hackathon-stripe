@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject } from '@ember/service';
+import RSVP from 'rsvp';
 
 export default Route.extend({
   stripe: inject(),
@@ -12,5 +13,10 @@ export default Route.extend({
 
   model(params) {
     return this.store.find('customer', params.id);
+  },
+
+  async afterModel(model) {
+    const plans = await RSVP.all(model.get('subscriptions').map(sub => sub.get('plan')));
+    await RSVP.all(plans.map(plan => this.store.find('product', plan.get('product'))));
   }
 })

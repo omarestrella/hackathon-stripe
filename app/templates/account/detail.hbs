@@ -16,12 +16,14 @@
 
 {{#profile/info-container as |container|}}
   {{#container.heading}}
-    Subscriptions
+    Product Subscriptions
   {{/container.heading}}
 
   {{#container.content}}
     {{#each model.subscriptions as |subscription|}}
-      {{profile/subscription-entry subscription=subscription}}
+      {{profile/subscription-entry account=model subscription=subscription}}
+    {{else}}
+      No active products...
     {{/each}}
   {{/container.content}}
 {{/profile/info-container}}
