@@ -1,1 +1,27 @@
-yay!
+<h3 class="name">
+  {{model.name}}
+</h3>
+
+{{#profile/info-container as |container|}}
+  {{#container.heading}}
+    Cards
+  {{/container.heading}}
+
+  {{#container.content}}
+    {{#each model.cards as |card|}}
+      {{profile/card-entry card=card}}
+    {{/each}}
+  {{/container.content}}
+{{/profile/info-container}}
+
+{{#profile/info-container as |container|}}
+  {{#container.heading}}
+    Subscriptions
+  {{/container.heading}}
+
+  {{#container.content}}
+    {{#each model.subscriptions as |subscription|}}
+      {{profile/subscription-entry subscription=subscription}}
+    {{/each}}
+  {{/container.content}}
+{{/profile/info-container}}
