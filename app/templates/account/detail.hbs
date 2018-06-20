@@ -16,6 +16,30 @@
 
 {{#profile/info-container as |container|}}
   {{#container.heading}}
+    Address
+  {{/container.heading}}
+
+  {{#container.content}}
+    <div class="address">
+      <div class="type">Billing</div>
+      <div class="details">
+        123 Main St.<br>
+        Charleston, SC 29492
+      </div>
+    </div>
+
+    <div class="address">
+      <div class="type">Shipping</div>
+      <div class="details">
+        123 Main St.<br>
+        Charleston, SC 29492
+      </div>
+    </div>
+  {{/container.content}}
+{{/profile/info-container}}
+
+{{#profile/info-container as |container|}}
+  {{#container.heading}}
     Product Subscriptions
   {{/container.heading}}
 
@@ -27,3 +51,90 @@
     {{/each}}
   {{/container.content}}
 {{/profile/info-container}}
+
+{{#profile/info-container as |container|}}
+  {{#container.heading}}
+    Orders
+  {{/container.heading}}
+
+  {{#container.content}}
+    {{#each orders as |order|}}
+      <div class="sales-order">
+        <div class="title">
+          <h4>Sales Order {{order.number}}</h4>
+        </div>
+
+        <div class="delivery-info">
+          <div class="entry">
+            <span>Order Date</span>
+            <span>{{order.orderDate}}</span>
+          </div>
+
+          <div class="entry">
+            <span>Expected<br>Shipment Date</span>
+            <span>{{order.shipmentDate}}</span>
+          </div>
+
+          <div class="entry">
+            <span>Delivery Method</span>
+            <span>UPS</span>
+          </div>
+
+          <div class="entry">
+            <span>Status</span>
+            <span class="status {{order.statusClass}}">
+              {{order.status}}
+            </span>
+          </div>
+        </div>
+
+        <div class="order-details">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  Item
+                </th>
+                <th>
+                  # Ordered
+                </th>
+                <th>
+                  Cost
+                </th>
+                <th>
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each order.details as |detail|}}
+                <tr>
+                  <td>
+                    {{detail.name}}
+                  </td>
+                  <td>
+                    {{detail.amount}}
+                  </td>
+                  <td>
+                    {{detail.price}}
+                  </td>
+                  <td>
+                    <select onchange={{action "updateOrder" order detail}}>
+                      <option value="" selected disabled>
+                        Select...
+                      </option>
+                      <option value="change-amount">
+                        Change Amount
+                      </option>
+                    </select>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    {{/each}}
+  {{/container.content}}
+{{/profile/info-container}}
+

@@ -8,5 +8,7 @@ export default Route.extend({
     if (!this.get('stripe.token')) {
       this.replaceWith('index');
     }
+
+    this.transitionTo('account.detail', 'cus_D4v7HXb4u7aPSv');
   }
 })
