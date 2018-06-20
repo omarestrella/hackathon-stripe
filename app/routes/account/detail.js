@@ -14,7 +14,9 @@ export default Route.extend({
 
   model(params) {
     return this.store.find('customer', params.id).then(customer => {
-      customer.set('name', this.get('application.person.name'));
+      if (this.get('application.person.name')) {
+        customer.set('name', this.get('application.person.name'));
+      }
       return customer;
     });
   },

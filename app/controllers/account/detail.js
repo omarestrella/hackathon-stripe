@@ -19,13 +19,24 @@ export default Controller.extend({
   },
 
   streetAddress: computed('application.person', function () {
-    return this.get('application.person.attributes')['context.addressStreet'];
+    if (this.get('application.person.attributes')['context.addressStreet']) {
+      return this.get('application.person.attributes')['context.addressStreet'];
+    }
+
+    return '3948 East Bay St.';
   }),
 
   cityState: computed('application.person', function () {
-    const city = this.get('application.person.attributes')['context.addressCity'];
-    const state = this.get('application.person.attributes')['context.addressState'];
-    const zip = this.get('application.person.attributes')['context.addressPostalCode'];
+    let city, state, zip;
+    if (!this.get('application.person.attributes')) {
+      city = 'Charleston';
+      state = 'SC';
+      zip = '29492'
+    } else {
+      city = this.get('application.person.attributes')['context.addressCity'];
+      state = this.get('application.person.attributes')['context.addressState'];
+      zip = this.get('application.person.attributes')['context.addressPostalCode'];
+    }
 
     return `${city}, ${state} ${zip}`;
   }),
