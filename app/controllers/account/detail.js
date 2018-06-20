@@ -1,7 +1,10 @@
 import Controller from '@ember/controller';
-import { set } from '@ember/object';
+import { set, computed } from '@ember/object';
+import { inject } from '@ember/service';
 
 export default Controller.extend({
+  application: inject(),
+
   orders: null,
 
   actions: {
@@ -14,6 +17,18 @@ export default Controller.extend({
       }
     }
   },
+
+  streetAddress: computed('application.person', function () {
+    return this.get('application.person.attributes')['context.addressStreet'];
+  }),
+
+  cityState: computed('application.person', function () {
+    const city = this.get('application.person.attributes')['context.addressCity'];
+    const state = this.get('application.person.attributes')['context.addressState'];
+    const zip = this.get('application.person.attributes')['context.addressPostalCode'];
+
+    return `${city}, ${state} ${zip}`;
+  }),
 
   init() {
     this._super(...arguments);
